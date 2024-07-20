@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="post">
+         {% csrf_token %}
+        <h1>Formulaire de creation de visiteur</h1>
+        <input name="nom" placeholder="entrer votre nom">
+        <input name="prenoms" placeholder="entrer vos prenoms">
+        <input name="type_piece" placeholder="type piece votre pièce">
+        <input name="numero_piece" placeholder="numéro de votre piece">
+        <input type="submit">
+    </form>
+</body>
+</html>
