@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
+import datetime
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from .models import Visiteur
+from .models import Visiteur, Visite
 
 
 # Create your views here.
@@ -36,7 +37,16 @@ def home(request: HttpRequest):
         return redirect("/")
     
     contenu_message = request.GET.get("message")
-    return render(request, "espace-agent.html", { 'success_message': contenu_message })
+    visites = Visite.objects.order_by("-id").all()
+
+    return render(
+        request, 
+        "espace-agent.html", 
+        { 
+            'success_message': contenu_message,
+            'liste_visites': visites
+        }
+    )
 
 def creer_nouveau_visiteur(request):
     if request.method == "GET":
@@ -46,8 +56,15 @@ def creer_nouveau_visiteur(request):
         prenoms = request.POST.get("prenoms")
         type_piece = request.POST.get("type_piece")
         numero_piece = request.POST.get("numero_piece")
+        motif = request.POST.get("motif")
 
-        Visiteur.objects.create(nom_visiteur = nom, prenoms_visiteur = prenoms, type_piece = type_piece, numero_piece = numero_piece)
+        visiteur = Visiteur.objects.create(nom_visiteur = nom, prenoms_visiteur = prenoms, type_piece = type_piece, numero_piece = numero_piece)
+        
+        Visite.objects.create(
+            motif_visite = motif,
+            heure_entree = datetime.datetime.now(),
+            visiteur = visiteur
+        )
         # return HttpResponse("SUCCES")
         # return render(request, "creer_visiteur.html")
         return redirect("/espace-agent?message=Visiteur créé avec success")

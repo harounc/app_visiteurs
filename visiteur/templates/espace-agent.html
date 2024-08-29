@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>espace agent</title>
+    <style>
+        thead tr {
+            background-color: rgb(221, 221, 221);
+        }
+    </style>
 </head>
 <body>
     <h1>BIENVENUE SUR VOTRE ESPACE AGENT ({{ user.email }}-{{ user.username }})</h1>
@@ -16,6 +21,27 @@
         <a href="creer">
             <button>Enregistrer un nouveau visiteur</button>
         </a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Motif</th>
+                    <th>Date d'entrée</th>
+                    <th>Date sortie</th>
+                    <th>visiteur</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visite in liste_visites %}
+                    <tr>
+                        <td>{{visite.motif_visite}}</td>
+                        <td>{{visite.heure_entree}}</td>
+                        <td>{{visite.heure_sortie}}</td>
+                        <td>{{visite.visiteur.nom_visiteur}} {{visite.visiteur.prenoms_visiteur}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

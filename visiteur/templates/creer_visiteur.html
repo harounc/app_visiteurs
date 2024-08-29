@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            justify-content: center;
+            display: flex;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 350px;
+        }
+        input {
+            min-height: 50px;
+            border-radius: 10px;
+            padding-left: 7px;
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="" method="post"  >
          {% csrf_token %}
         <h1>Formulaire de creation de visiteur</h1>
-        <input name="nom" placeholder="entrer votre nom">
-        <input name="prenoms" placeholder="entrer vos prenoms">
-        <input name="type_piece" placeholder="type piece votre pièce">
-        <input name="numero_piece" placeholder="numéro de votre piece">
-        <input type="submit">
+        <a href="/">Retour</a>
+        <input required name="nom" placeholder="entrer votre nom">
+        <input required name="prenoms" placeholder="entrer vos prenoms">
+        <input required name="type_piece" placeholder="type piece votre pièce">
+        <input required name="numero_piece" placeholder="numéro de votre piece">
+        <input required name="motif" placeholder="Le motif de la visite">
+        <input required type="submit">
     </form>
 </body>
 </html>

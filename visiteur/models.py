@@ -25,7 +25,9 @@ class Visiteur(models.Model):
 class Visite(models.Model):
     motif_visite = models.TextField()
     heure_entree = models.DateTimeField()
-    heure_sortie = models.DateTimeField()
-    id_visiteur = models.ForeignKey(Visiteur, on_delete=models.CASCADE)
+
+    # On rajoute "null = True" pour rendre le champ optionnel dans la DB 
+    heure_sortie = models.DateTimeField(null = True)
+    visiteur = models.ForeignKey(Visiteur, on_delete=models.CASCADE)
 
 
