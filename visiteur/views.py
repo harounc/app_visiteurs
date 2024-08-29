@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from .models import Visiteur
 
 
@@ -31,12 +31,14 @@ def index(request):
 
     return render(request, "login.html", context)
 
-def home(request):
+def home(request: HttpRequest):
     if not request.user.is_authenticated:
         return redirect("/")
-    return render(request, "espace-agent.html")
+    
+    contenu_message = request.GET.get("message")
+    return render(request, "espace-agent.html", { 'success_message': contenu_message })
 
-def creer(request):
+def creer_nouveau_visiteur(request):
     if request.method == "GET":
         return render(request, "creer_visiteur.html")
     elif request.method == "POST":
@@ -48,8 +50,8 @@ def creer(request):
         Visiteur.objects.create(nom_visiteur = nom, prenoms_visiteur = prenoms, type_piece = type_piece, numero_piece = numero_piece)
         # return HttpResponse("SUCCES")
         # return render(request, "creer_visiteur.html")
-        return redirect("/creer")
-
+        return redirect("/espace-agent?message=Visiteur créé avec success")
+    
 def deconnexion(request):
     logout(request)
     return redirect("/")

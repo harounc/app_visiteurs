@@ -7,5 +7,15 @@
 <body>
     <h1>BIENVENUE SUR VOTRE ESPACE AGENT ({{ user.email }}-{{ user.username }})</h1>
     <a href="/logout">Se deconnecter</a>
+
+    {% if success_message %}
+        <p>{{success_message}}</p>
+    {% endif%}
+
+    <div>
+        <a href="creer">
+            <button>Enregistrer un nouveau visiteur</button>
+        </a>
+    </div>
 </body>
 </html>

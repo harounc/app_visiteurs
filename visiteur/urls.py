@@ -5,9 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('creer', views.creer),
+    path('creer', views.creer_nouveau_visiteur),
     path('test', views.test),
     path('logout', views.deconnexion),
     path('espace-agent', views.home),
-
 ]
