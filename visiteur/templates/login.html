@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>page de connexion</h1>
+    <h6>{{ erreur }}</h6>
+    <h6>{{ succes }}</h6>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Entrez votre email" required>
+        <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+        <input type="submit" value="Se connecter">
+    </form>
+
+</body>
+</html>
