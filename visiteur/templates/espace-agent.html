@@ -7,17 +7,69 @@
         thead tr {
             background-color: rgb(221, 221, 221);
         }
+
+        #header {
+            display: flex;
+            width: 100%;
+            background-color: aliceblue;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #logout-button {
+            text-decoration: none;
+            padding: 10px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+        }
+        #logout-button:hover {
+            opacity: 0.7;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            padding: 12px;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 7px;
+        }
+        #stats-list {
+            display: flex;
+        }
     </style>
 </head>
 <body>
-    <h1>BIENVENUE SUR VOTRE ESPACE AGENT ({{ user.email }}-{{ user.username }})</h1>
-    <a href="/logout">Se deconnecter</a>
+    <div id="header" >
+        <div>
+            <h1>BIENVENUE SUR VOTRE ESPACE AGENT</h1>
+            <h6>{{ user.username }}</h6>
+        </div>
+        
+        <a href="/logout" id="logout-button" >Se deconnecter</a>
+    </div>
 
     {% if success_message %}
         <p>{{success_message}}</p>
     {% endif%}
 
-    <div>
+    <div id="content" >
+        
+        <div id="stats-list" >
+            <div class="card" >
+                <h2>{{nombre_visiteur_today}}</h2>
+                <p>Visiteurs aujourd'hui </p>
+            </div>
+    
+            <div class="card" >
+                <h2>{{nombre_visiteur_semaine}}</h2>
+                <p>Visiteurs dans la semaine </p>
+            </div>
+        </div>
+
         <a href="creer">
             <button>Enregistrer un nouveau visiteur</button>
         </a>

@@ -5,6 +5,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import Visiteur, Visite
 
+"""
+TODO:
+    - Nombre total de visites ce mois
+    - Prendre en compte le service que l'utilisateur va visiter et la personne 
+        - Ajouter les champs nécessaires dans le Model Visite
+        - Modifier le formulaire d'ajout pour correcpondre aux nouveaux champ ajoutés
+    Next
+    - Nombre de visites par service / periode
+    - Ajouter la prise en compte des utilsateurs internes
+
+"""
 
 # Create your views here.
 def index(request):
@@ -39,12 +50,41 @@ def home(request: HttpRequest):
     contenu_message = request.GET.get("message")
     visites = Visite.objects.order_by("-id").all()
 
+    # today_minuit = datetime.datetime.now()
+    # today_minuit.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    # today_23h = datetime.datetime.now()
+    # today_23h.replace(hour=23, minute=59, second=59)
+
+    # nombre_visiteur_today = Visite.objects.filter(
+    #     # heure_entree__gt = today_minuit,
+    #     # heure_entree__lt = today_23h,
+    # ).count()
+
+    today = datetime.date.today()
+    
+
+    indice_today_dans_la_semaine = today.weekday()
+    lundi = today - datetime.timedelta(days = indice_today_dans_la_semaine)
+    dimanche = lundi + datetime.timedelta(days = 6)
+
+    nombre_visiteur_today = Visite.objects.filter(
+        heure_entree__date = today
+    ).count()
+
+    nombre_visiteur_semaine = Visite.objects.filter(
+        heure_entree__gt = lundi,
+        heure_entree__lt = dimanche,
+    ).count()
+
     return render(
         request, 
         "espace-agent.html", 
         { 
             'success_message': contenu_message,
-            'liste_visites': visites
+            'liste_visites': visites,
+            'nombre_visiteur_today': nombre_visiteur_today,
+            'nombre_visiteur_semaine': nombre_visiteur_semaine,
         }
     )
 
