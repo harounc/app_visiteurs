@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <style>
+        body {
+            justify-content: center;
+            display: flex;
+            padding-top: 10%;
+        }
+
+        section {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 350px;
+
+        }
+
+        form {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 350px;
+
+        }
+
+        input {
+            min-height: 50px;
+            border-radius: 10px;
+            padding-left: 7px;
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <div>
+            <h1>page de connexion</h1>
+            <h6>{{ erreur }}</h6>
+            <h6>{{ succes }}</h6>
+        </div>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Entrez votre email" required>
+            <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+            <input type="submit" value="Se connecter">
+        </form>
+    </section>
+
+</body>
+</html>

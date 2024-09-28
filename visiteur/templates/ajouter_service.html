@@ -14,7 +14,7 @@
             gap: 15px;
 
         }
-        input {
+        input, select {
             min-height: 50px;
             border-radius: 10px;
             padding-left: 7px;
@@ -35,21 +35,16 @@
             </li>
             <li><a href="liste_des_visites">Liste des visites</a></li>
             <li><a href="services">Services</a></li>
-           <li><a href="#se-connecter">Se connecter</a></li>
+         <li><a href="#se-connecter">Se connecter</a></li>
             <li><a href="/logout" id="logout-button" >Se deconnecter</a></li>
         </ul>
-    </nav>--->
-
-
+    </nav>
+--->
     <form action="" method="post"  >
          {% csrf_token %}
-        <h1>Formulaire de creation de visiteur</h1>
-        <a href="espace-agent">Retour</a>
-        <input required name="nom" placeholder="entrer votre nom">
-        <input required name="prenoms" placeholder="entrer vos prenoms">
-        <input required name="type_piece" placeholder="type piece votre pièce">
-        <input required name="numero_piece" placeholder="numéro de votre piece">
-        <input required name="motif" placeholder="Le motif de la visite">
+        <h1>Ajouter un nouveau service</h1>
+        <a href="services">Retour</a>
+        <input required name="nom_service" placeholder="entrer le nom du service à ajouter">
         <input required type="submit">
     </form>
 </body>

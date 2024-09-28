@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des visites</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: aliceblue;
+            padding: 40px 60px;
+            color: #f79000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 1.5em;
+        }
+
+        .navbar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar-links li {
+            margin-left: 20px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            background-color: #575757;
+        }
+
+
+
+        thead tr {
+            background-color: rgb(221, 221, 221);
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        #header h6 {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        #accueil-button {
+            background-color: #fff;
+            color: #f76b0a;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #logout-button:hover {
+            background-color: #c9302c;
+        }
+
+         span {
+            color: blue;
+         }
+
+
+        #content {
+            padding: 20px 60px;
+        }
+
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            padding: 12px;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 15px;
+        }
+        #stats-list {
+            display: flex;
+            padding: 5px 0px;
+        }
+
+
+        .register-button {
+            display: flex;
+            padding: 20px 0px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!---<nav class="navbar">
+
+      <nav class="navbar">
+        <img src="chemin du logo du site" alt="Logo du site">
+        <ul class="navbar-links">
+            <li>
+                <a href="#">Nouvelle visite</a>
+                <ul>
+                    <li><a href="creer">Visiteur</a></li>
+                    <li><a href="employe">Employe</a></li>
+                </ul>
+            </li>
+            <li><a href="liste_des_visites">Liste des visites</a></li>
+            <li><a href="services">Services</a></li>
+            <li><a href="#se-connecter">Se connecter</a></li>
+            <li><a href="/logout" id="logout-button" >Se deconnecter</a></li>
+        </ul>
+    </
+
+        <img src="chemin du logo du site" alt="Logo du site">
+        <ul class="navbar-links">
+           <li><a href="/nouvelle_visite">Nouvelle visite</a></li>
+            <li><a href="/espace-agent" id="accueil-button" >Retour à l'accueil</a></li>
+        </ul>
+    </nav>
+    -->
+
+    <nav class="navbar">
+        <img src="chemin du logo du site" alt="Logo du site">
+        <ul class="navbar-links">
+            <li>
+                <a href="#">Nouvelle visite</a>
+                <ul>
+                    <li><a href="creer">Visiteur</a></li>
+                    <li><a href="employe">Employe</a></li>
+                </ul>
+            </li>
+            <li><a href="liste_des_visites">Liste des visites</a></li>
+            <li><a href="services">Services</a></li>
+            <!---<li><a href="#se-connecter">Se connecter</a></li>--->
+            <li><a href="/logout" id="logout-button" >Se deconnecter</a></li>
+        </ul>
+    </nav>
+
+    <div id="header" >
+        <div>
+            <h1>Page de la liste des visites</h1>
+            <!--- <h1>Bienvenue sur votre espace <span>{{ user.username }}</span></h1> --->
+        </div>
+
+    </div>
+
+    {% if success_message %}
+        <p>{{success_message}}</p>
+    {% endif%}
+
+    <div id="content" >
+<!---
+        <div id="stats-list" >
+            <div class="card" >
+                <h2>{{nombre_visiteur_today}}</h2>
+                <p>Visiteurs aujourd'hui </p>
+            </div>
+
+            <div class="card" >
+                <h2>{{nombre_visiteur_semaine}}</h2>
+                <p>Visiteurs dans la semaine </p>
+            </div>
+        </div>
+
+        <div class="register-button">
+            <a href="creer">
+                <button>Enregistrer un nouveau visiteur</button>
+            </a>
+        </div>
+  --->
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Motif</th>
+                    <th>Date d'entrée</th>
+                    <th>Date sortie</th>
+                    <th>visiteur</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visite in liste_visites %}
+                    <tr>
+                        <td>{{visite.motif_visite}}</td>
+                        <td>{{visite.heure_entree}}</td>
+                        <td>{{visite.heure_sortie}}</td>
+                        <td>{{visite.visiteur.nom_visiteur}} {{visite.visiteur.prenoms_visiteur}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
