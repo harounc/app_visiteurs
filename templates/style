@@ -1,0 +1,120 @@
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: aliceblue;
+            padding: 40px 60px;
+            color: #f79000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 1.5em;
+        }
+
+        .navbar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar-links li {
+            margin-left: 20px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-links a:hover {
+            background-color: #575757;
+        }
+
+
+
+        thead tr {
+            background-color: rgb(221, 221, 221);
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        #header h6 {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        #logout-button {
+            background-color: #d9534f;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #logout-button:hover {
+            background-color: #c9302c;
+        }
+
+         span {
+            color: blue;
+         }
+
+        #content {
+            padding: 20px 60px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            padding: 12px;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 15px;
+        }
+
+        #stats-list {
+            display: flex;
+            padding: 5px 0px;
+        }
+
+
+        .register-button {
+            display: flex;
+            padding: 20px 0px;
+        }
+
+    </style>

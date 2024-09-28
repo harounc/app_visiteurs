@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            justify-content: center;
+            display: flex;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+        }
+        input, select {
+            min-height: 50px;
+            border-radius: 10px;
+            padding-left: 7px;
+        }
+    </style>
+</head>
+<body>
+
+ <!--- <nav class="navbar">--->
+        <img src="chemin du logo du site" alt="Logo du site">
+        <ul class="navbar-links">
+            <li>
+                <a href="#">Nouvelle visite</a>
+                <ul>
+                    <li><a href="creer">Visiteur</a></li>
+                    <li><a href="employe">Employe</a></li>
+                </ul>
+            </li>
+            <li><a href="liste_des_visites">Liste des visites</a></li>
+            <li><a href="services">Services</a></li>
+            <!---<li><a href="#se-connecter">Se connecter</a></li>--->
+            <li><a href="/logout" id="logout-button" >Se deconnecter</a></li>
+        </ul>
+    </nav>
+
+    <form action="" method="post"  >
+         {% csrf_token %}
+        <h1>Ajouter un employer</h1>
+        <a href="employe">Retour</a>
+        <input required name="nom" placeholder="entrer le nom">
+        <input required name="prenoms" placeholder="entrer prenoms">
+        <input required name="type_piece" placeholder="type de pièce">
+        <input required name="numero_piece" placeholder="numéro de piece">
+
+        <select name="service" id="service" required>
+            {% for service in services %}
+                <option value="{{ service.id }}">{{ service.nom_service }}</option>
+            {% endfor %}
+        </select>
+
+      <!---
+        <select required name="service">
+            <option value="" disabled selected>Veuillez choisir un service</option>
+            <option value="RH TT/ST">RH TT/ST</option>
+            <option value="Finance Comptabilité">Finance Comptabilité</option>
+            <option value="Direction generale">Direction generale</option>
+            <option value="Digital Team">Digital Team</option>
+            <option value="Formation">Formation</option>
+        </select>
+        <input required type="submit">--->
+        <button type="submit">Ajouter Employé</button>
+    </form>
+</body>
+</html>

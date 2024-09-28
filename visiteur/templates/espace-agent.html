@@ -1,32 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>espace agent</title>
-    <style>
+ {% extends "layout.html" %}
+
+ {% block style %}
+
         thead tr {
             background-color: rgb(221, 221, 221);
         }
 
         #header {
             display: flex;
-            width: 100%;
-            background-color: aliceblue;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header div {
+            display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        #header h6 {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
         #logout-button {
+            background-color: #d9534f;
+            color: #fff;
             text-decoration: none;
-            padding: 10px;
-            padding-left: 16px;
-            padding-right: 16px;
-            border-radius: 10px;
-            background-color: red;
-            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
+
         #logout-button:hover {
-            opacity: 0.7;
+            background-color: #c9302c;
         }
+
+         span {
+            color: blue;
+         }
+
+        #content {
+            padding: 20px 60px;
+        }
+
         .card {
             display: flex;
             flex-direction: column;
@@ -35,21 +61,29 @@
             padding: 12px;
             border-radius: 10px;
             width: fit-content;
-            margin: 7px;
+            margin: 15px;
         }
+
         #stats-list {
             display: flex;
+            padding: 5px 0px;
         }
-    </style>
-</head>
-<body>
+
+
+        .register-button {
+            display: flex;
+            padding: 20px 0px;
+        }
+
+ {% endblock style %}
+
+ {% block main %}
+
     <div id="header" >
         <div>
-            <h1>BIENVENUE SUR VOTRE ESPACE AGENT</h1>
-            <h6>{{ user.username }}</h6>
+            <h1>Bienvenue sur votre espace <span>{{ user.username }}</span></h1>
         </div>
-        
-        <a href="/logout" id="logout-button" >Se deconnecter</a>
+
     </div>
 
     {% if success_message %}
@@ -70,10 +104,14 @@
             </div>
         </div>
 
-        <a href="creer">
-            <button>Enregistrer un nouveau visiteur</button>
-        </a>
+     <!---   <div class="register-button">
+            <a href="creer">
+                <button>Enregistrer un nouveau visiteur</button>
+            </a>
+        </div>
+        --->
 
+        <!---
         <table>
             <thead>
                 <tr>
@@ -94,6 +132,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        --->
     </div>
-</body>
-</html>
+
+ {% endblock main %}
